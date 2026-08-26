@@ -30,7 +30,7 @@ function corParaCadaVertice(vertices, r, g, b) {
 // 1. VERTICES
 // --------------------------------------------------
  
-const v_corpo = retangulo(-0.28, -0.4, 0.28, 0.1);
+const v_corpo = retangulo(-0.28, -0.45, 0.28, 0.1);
 const v_cabeca = retangulo(-0.18, 0.1, 0.18, 0.4);
  
 const v_olhoEsquerdo = retangulo(-0.08, 0.2, -0.02, 0.28);
@@ -39,11 +39,11 @@ const v_olhoDireito = retangulo(0.02, 0.2, 0.08, 0.28);
 const v_antena = retangulo(-0.02, 0.4, 0.02, 0.55);
 const v_bolinha = retangulo(-0.04, 0.55, 0.04, 0.63);
  
-const v_pernaEsquerda = retangulo(-0.15, -0.7, -0.05, -0.4);
-const v_pernaDireita = retangulo(0.05, -0.7, 0.15, -0.4);
+const v_pernaEsquerda = retangulo(-0.15, -0.7, -0.05, -0.45);
+const v_pernaDireita = retangulo(0.05, -0.7, 0.15, -0.45);
 
-const v_bracoEsquerdo = retangulo(-0.45, -0.1, -0.28, 0.05);
-const v_bracoDireito = retangulo(0.28, -0.1, 0.45, 0.05);
+const v_bracoEsquerdo = retangulo(-0.45, -0.1, -0.28, 0.03);
+const v_bracoDireito = retangulo(0.28, -0.1, 0.45, 0.03);
  
 const vertices_robo = new Float32Array([
     ...v_corpo,
