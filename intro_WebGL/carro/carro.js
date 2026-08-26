@@ -45,8 +45,9 @@ function corParaCadaVertice(vertices, r, g, b) {
 // --------------------------------------------------
 
 const v_chassi = retangulo(-0.5, -0.15, 0.5, 0.05);
-const v_cabine = retangulo(-0.25, 0.05, 0.25, 0.25);
-const v_janela = retangulo(-0.2, 0.1, 0.2, 0.2);
+const v_cabine = retangulo(-0.25, 0.05, 0.25, 0.28);
+const v_janela = retangulo(-0.2, 0.1, 0.2, 0.23);
+const v_farol = retangulo(-0.5, -0.001, -0.40, 0.05);
 
 const v_rodaEsquerda = roda(-0.3, -0.15, 0.12, 12);
 const v_rodaDireita = roda(0.3, -0.15, 0.12, 12);
@@ -58,6 +59,7 @@ const vertices_carro = new Float32Array([
     ...v_chassi,
     ...v_cabine,
     ...v_janela,
+    ...v_farol,
     ...v_rodaEsquerda,
     ...v_rodaDireita,
     ...v_rodaCentroE,
@@ -73,6 +75,7 @@ const colors_carro = new Float32Array([
     ...corParaCadaVertice(v_chassi, 0.85, 0.1, 0.1), // vermelho
     ...corParaCadaVertice(v_cabine, 0.7, 0.05, 0.05), // vermelho escuro
     ...corParaCadaVertice(v_janela, 0.5, 0.8, 1.0), // azul claro
+    ...corParaCadaVertice(v_farol, 1.0, 1.0, 0.5), // amarelo
     ...corParaCadaVertice(v_rodaEsquerda, 0.25, 0.25, 0.25), // cinza
     ...corParaCadaVertice(v_rodaDireita, 0.25, 0.25, 0.25), // cinza
     ...corParaCadaVertice(v_rodaCentroE, 0.05, 0.05, 0.05), // preto
