@@ -42,8 +42,8 @@ const v_bolinha = retangulo(-0.04, 0.55, 0.04, 0.63);
 const v_pernaEsquerda = retangulo(-0.15, -0.7, -0.05, -0.45);
 const v_pernaDireita = retangulo(0.05, -0.7, 0.15, -0.45);
 
-const v_bracoEsquerdo = retangulo(-0.45, -0.1, -0.28, 0.03);
-const v_bracoDireito = retangulo(0.28, -0.1, 0.45, 0.03);
+const v_bracoEsquerdo = retangulo(-0.40, -0.1, -0.28, 0.03);
+const v_bracoDireito = retangulo(0.28, -0.1, 0.40, 0.03);
  
 const vertices_robo = new Float32Array([
     ...v_corpo,
