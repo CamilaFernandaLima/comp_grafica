@@ -34,38 +34,69 @@ function corParaCadaVertice(vertices, r, g, b) {
 // Caule (retângulo)
 const v_caule = retangulo(-0.04, -0.8, 0.04, 0.05);
 
+const v_folhaCaule = [
+    0.04, -0.2,
+    0.3, -0.08,
+    0.04, -0.4
+]
+
 // Miolo (quadrado)
-const v_miolo = retangulo(-0.08, 0.22, 0.08, 0.38);
+const v_miolo = retangulo(-0.05, 0.25, 0.05, 0.35);
 
 // 4 pétalas 
 const v_petalaCima = [
-    -0.08, 0.38, 
-    0.08, 0.38, 
-    0.0, 0.6
+    0.0, 0.38, 
+    -0.08, 0.6, 
+    0.08, 0.6
 ];
 const v_petalaBaixo = [
-    -0.08, 0.22, 
-    0.08, 0.22, 
-    0.0, 0.05
+    -0.08, 0.00, 
+    0.08, 0.00, 
+    0.0, 0.22
 ];
 const v_petalaEsquerda = [
-    -0.08, 0.22, 
-    -0.08, 0.38, 
-    -0.3, 0.30
+    -0.3, 0.22, 
+    -0.3, 0.38, 
+    -0.08, 0.30
 ];
 const v_petalaDireita = [
-    0.08, 0.22, 
-    0.08, 0.38, 
-    0.3, 0.30
+    0.3, 0.22, 
+    0.3, 0.38, 
+    0.08, 0.30
+];
+const v_petalaDiagonal1 = [
+    -0.26, 0.42,
+    -0.13, 0.56,
+    -0.06, 0.36
+];
+const v_petalaDiagonal2 = [
+    0.26, 0.42,
+    0.13, 0.56,
+    0.06, 0.36
+];
+const v_petalaDiagonal3 = [
+    -0.26, 0.18,
+    -0.13, 0.04,
+    -0.06, 0.24
+];
+const v_petalaDiagonal4 = [
+    0.26, 0.18,
+    0.13, 0.04,
+    0.06, 0.24
 ];
 
 const vertices_flor = new Float32Array([
     ...v_caule,
+    ...v_folhaCaule,
     ...v_miolo,
     ...v_petalaCima,
     ...v_petalaBaixo,
     ...v_petalaEsquerda,
-    ...v_petalaDireita
+    ...v_petalaDireita,
+    ...v_petalaDiagonal1,
+    ...v_petalaDiagonal2,
+    ...v_petalaDiagonal3,
+    ...v_petalaDiagonal4
 ]);
 
 
@@ -75,11 +106,16 @@ const vertices_flor = new Float32Array([
 
 const colors_flor = new Float32Array([
     ...corParaCadaVertice(v_caule, 0.0, 0.6, 0.0),  // verde
+    ...corParaCadaVertice(v_folhaCaule, 0.3, 0.6, 0.3),  // verde
     ...corParaCadaVertice(v_miolo, 1.0, 0.85, 0.0), // amarelo
     ...corParaCadaVertice(v_petalaCima, 1.0, 0.3, 0.6), // rosa
     ...corParaCadaVertice(v_petalaBaixo, 1.0, 0.3, 0.6), // rosa
     ...corParaCadaVertice(v_petalaEsquerda, 1.0, 0.3, 0.6), // rosa
-    ...corParaCadaVertice(v_petalaDireita, 1.0, 0.3, 0.6) // rosa
+    ...corParaCadaVertice(v_petalaDireita, 1.0, 0.3, 0.6), // rosa
+    ...corParaCadaVertice(v_petalaDiagonal1, 1.0, 0.55, 0.6), // rosa
+    ...corParaCadaVertice(v_petalaDiagonal2, 1.0, 0.55, 0.6), // rosa
+    ...corParaCadaVertice(v_petalaDiagonal3, 1.0, 0.55, 0.6), // rosa
+    ...corParaCadaVertice(v_petalaDiagonal4, 1.0, 0.55, 0.6) // rosa
 ]);
 
 
