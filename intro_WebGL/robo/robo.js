@@ -30,16 +30,20 @@ function corParaCadaVertice(vertices, r, g, b) {
 // 1. VERTICES
 // --------------------------------------------------
  
-const v_corpo = retangulo(-0.25, -0.4, 0.25, 0.1);
-const v_cabeca = retangulo(-0.15, 0.1, 0.15, 0.4);
+const v_corpo = retangulo(-0.28, -0.4, 0.28, 0.1);
+const v_cabeca = retangulo(-0.18, 0.1, 0.18, 0.4);
  
 const v_olhoEsquerdo = retangulo(-0.08, 0.2, -0.02, 0.28);
 const v_olhoDireito = retangulo(0.02, 0.2, 0.08, 0.28);
  
 const v_antena = retangulo(-0.02, 0.4, 0.02, 0.55);
+const v_bolinha = retangulo(-0.04, 0.55, 0.04, 0.63);
  
 const v_pernaEsquerda = retangulo(-0.15, -0.7, -0.05, -0.4);
 const v_pernaDireita = retangulo(0.05, -0.7, 0.15, -0.4);
+
+const v_bracoEsquerdo = retangulo(-0.45, -0.1, -0.28, 0.05);
+const v_bracoDireito = retangulo(0.28, -0.1, 0.45, 0.05);
  
 const vertices_robo = new Float32Array([
     ...v_corpo,
@@ -47,8 +51,11 @@ const vertices_robo = new Float32Array([
     ...v_olhoEsquerdo,
     ...v_olhoDireito,
     ...v_antena,
+    ...v_bolinha,
     ...v_pernaEsquerda,
-    ...v_pernaDireita
+    ...v_pernaDireita,
+    ...v_bracoEsquerdo,
+    ...v_bracoDireito
 ]);
  
  
@@ -57,13 +64,16 @@ const vertices_robo = new Float32Array([
 // --------------------------------------------------
  
 const colors_robo = new Float32Array([
-    ...corParaCadaVertice(v_corpo, 0.2, 0.3, 0.5), // azul 
-    ...corParaCadaVertice(v_cabeca, 0.35, 0.55, 0.75), // azul acinzentado
+    ...corParaCadaVertice(v_corpo, 0.25, 0.45, 0.65), // azul acinzentado
+    ...corParaCadaVertice(v_cabeca, 0.30, 0.50, 0.70), // azul acinzentado
     ...corParaCadaVertice(v_olhoEsquerdo, 0.3, 0.0, 0.5), // roxo
     ...corParaCadaVertice(v_olhoDireito, 0.3, 0.0, 0.5), // roxo
     ...corParaCadaVertice(v_antena, 0.4, 0.4, 0.4), // cinza
-    ...corParaCadaVertice(v_pernaEsquerda, 0.35, 0.40, 0.8), // lilas 
-    ...corParaCadaVertice(v_pernaDireita, 0.35, 0.40, 0.8) // lilas
+    ...corParaCadaVertice(v_bolinha, 0.8, 0.1, 0.1), // vermelho
+    ...corParaCadaVertice(v_pernaEsquerda, 0.2, 0.3, 0.5), // azul
+    ...corParaCadaVertice(v_pernaDireita, 0.2, 0.3, 0.5), // azul
+    ...corParaCadaVertice(v_bracoEsquerdo, 0.2, 0.3, 0.5), // azul
+    ...corParaCadaVertice(v_bracoDireito, 0.2, 0.3, 0.5) // azul
 ]);
  
  
