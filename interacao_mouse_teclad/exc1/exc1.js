@@ -548,9 +548,3 @@ function drawScene() {
         vertices.length / numComponents
     );
 }
-
-
-// --------------------------------------------------
-// 18. ESTADO INICIAL
-// -------------------------------------------------
-mudarCor(3);

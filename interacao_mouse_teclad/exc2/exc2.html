@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 2 - Linhas e Triângulos com Bresenham</title>
+    <style>
+        body {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            font-size: 20px;
+        }
+        canvas {
+            border: 1px solid #999;
+            background-color: black;
+            display: block;
+        }
+        #info {
+            max-width: 600px;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #333;
+        }
+        #status {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+            align-items: center;
+        }
+        #colorBox {
+            width: 18px;
+            height: 18px;
+            border: 1px solid #666;
+            background-color: blue;
+        }
+        #paleta {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .cor-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+        }
+        .cor-quadrado {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Exercício 2 - Linhas e Triângulos com Bresenham</h1>
+
+    <canvas id="canvas" width="600" height="600"></canvas>
+
+    <div id="info">
+        <p><strong>Modo Linha (tecla R):</strong> clique com o botão
+        esquerdo pra marcar o ponto inicial e clique de novo pra marcar
+        o ponto final.</p>
+
+        <p><strong>Modo Triângulo (tecla T):</strong> clique 3 vezes
+        seguidas com o botão esquerdo pra marcar os 3 vértices. Apenas
+        as arestas (linhas) do triângulo são traçadas, sem preenchimento.</p>
+
+        <p><strong>Trocar a cor:</strong> aperte uma tecla de 0 a 9, em
+        qualquer modo.</p>
+
+
+        <div id="status">
+            <span id="modoAtual">Modo: Linha</span>
+            <span id="progresso"></span>
+            <span id="canvasCoordinates">Canvas: -</span>
+            <span id="webglCoordinates">WebGL: -</span>
+            <span>Cor atual: <span id="colorBox"></span> <span id="colorName">azul</span></span>
+        </div>
+
+    </div>
+
+    <script src="exc2.js"></script>
+
+</body>
+</html>
