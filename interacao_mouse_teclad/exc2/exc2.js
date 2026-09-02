@@ -623,3 +623,11 @@ function drawScene() {
         vertices.length / numComponents
     );
 }
+
+// --------------------------------------------------
+// 18. ESTADO INICIAL
+// --------------------------------------------------
+// Linha (0,0)-(0,0) azul, exigida pelo enunciado.
+ 
+mudarCor(3);
+atualizarIndicadorDeModo();
