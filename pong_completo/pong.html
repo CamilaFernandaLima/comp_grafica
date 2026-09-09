@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Pong</title>
+    <style>
+        body {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            font-size: 20px;
+        }
+        #placar {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        #btnReiniciar {
+            font-size: 14px;
+            font-weight: normal;
+            padding: 4px 12px;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        #placarEsquerda {
+            color: #2e9e2e;
+        }
+        #placarDireita {
+            color: #2e5ee6;
+        }
+        canvas {
+            border: 1px solid #999;
+            background-color: black;
+            display: block;
+        }
+        #instrucoes {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Pong</h1>
+
+    <div id="placar">
+        <span id="placarEsquerda">Esquerda: 0</span>
+        &nbsp;|&nbsp;
+        <span id="placarDireita">Direita: 0</span>
+        &nbsp;&nbsp;
+        <button id="btnReiniciar">Reiniciar Jogo</button>
+    </div>
+
+    <canvas id="canvas" width="600" height="600"></canvas>
+
+    <p id="instrucoes">
+        Jogador da esquerda (verde): teclas <strong>W</strong> (sobe) /
+        <strong>S</strong> (desce).<br>
+        Jogador da direita (azul): setas <strong>↑</strong> (sobe) /
+        <strong>↓</strong> (desce).
+    </p>
+
+    <script src="m3.js"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>
