@@ -338,7 +338,7 @@ function drawBolaCentro(){
 }
 
 // --------------------------------------------------
-// DIMENSÕES DO CAMPO 
+// DIMENSÕES DO CAMPO (usadas na colisão)
 // --------------------------------------------------
 // Valores tirados direto da geometria já definida acima:
 // - As barras vão de -0.05 a 0.05 (largura) e -0.2 a 0.2 (altura) antes da translação.
@@ -350,7 +350,6 @@ const BARRA_META_LARGURA = 0.05;
 const BARRA_META_ALTURA = 0.2;
 const BOLA_RAIO = 0.05;
 
-// Limite de quanto o centro de uma barra pode se mover pra cima/baixo sem sair da tela
 const LIMITE_Y_BARRA = 1.0 - BARRA_META_ALTURA;
 
 // Linha de "frente" de cada barra (onde a bola encosta)
@@ -358,25 +357,25 @@ const FRENTE_BARRA_DIREITA = CAMPO_X - BARRA_META_LARGURA;
 const FRENTE_BARRA_ESQUERDA = -CAMPO_X + BARRA_META_LARGURA;
 
 // --------------------------------------------------
-// PLACAR
+// ESTADO DO JOGO
 // --------------------------------------------------
 
-let pontosEsquerda = 0;
-let pontosDireita = 0;
+let jogoAtivo = true;
 
-const placarEsquerdaEl = document.getElementById("placarEsquerda");
-const placarDireitaEl = document.getElementById("placarDireita");
+const painelFimDeJogo = document.getElementById("painelFimDeJogo");
+const mensagemFimEl = document.getElementById("mensagemFim");
+const btnJogarNovamente = document.getElementById("btnJogarNovamente");
 
-function atualizarPlacar() {
-    placarEsquerdaEl.textContent = `Esquerda: ${pontosEsquerda}`;
-    placarDireitaEl.textContent = `Direita: ${pontosDireita}`;
+// Congela o jogo (bola e barras param de se mover) e mostra a mensagem.
+function finalizarJogo(mensagem) {
+    jogoAtivo = false;
+    mensagemFimEl.textContent = mensagem;
+    painelFimDeJogo.style.display = "block";
 }
 
 // --------------------------------------------------
-// TECLADO
+// TECLADO (AS DUAS BARRAS SÃO CONTROLADAS PELO JOGADOR)
 // --------------------------------------------------
-// Barra esquerda: teclas W (sobe) / S (desce).
-// Barra direita: setas ArrowUp (sobe) / ArrowDown (desce).
 
 const teclasPressionadas = {
     ArrowUp: false,
@@ -406,10 +405,10 @@ window.addEventListener("keyup", function (event) {
 // PARÂMETROS ANIMAÇÃO
 // --------------------------------------------------
 
-// Barra esquerda (jogador, controlada por W/S)
+// Barra esquerda (controlada por W/S)
 let tyBE = 0.0;
 
-// Barra direita (jogador, controlada pelas setas)
+// Barra direita (controlada pelas setas)
 let tyBD = 0.0;
 
 const VELOCIDADE_JOGADOR = 0.02;
@@ -456,7 +455,7 @@ function moverBarraDireita() {
     MbarraDireita = m3.translation(CAMPO_X, tyBD);
 }
 
-// Recoloca a bola no centro depois de um ponto
+// Recoloca a bola no centro pra começar uma partida nova
 function resetarBola(direcao) {
     txBola = 0.0;
     tyBola = 0.0;
@@ -466,16 +465,10 @@ function resetarBola(direcao) {
 }
 
 // --------------------------------------------------
-// BOTÃO DE REINICIAR
+// JOGAR NOVAMENTE
 // --------------------------------------------------
 
-const btnReiniciar = document.getElementById("btnReiniciar");
-
-function reiniciarJogo() {
-
-    pontosEsquerda = 0;
-    pontosDireita = 0;
-    atualizarPlacar();
+function jogarNovamente() {
 
     tyBE = 0.0;
     tyBD = 0.0;
@@ -483,9 +476,12 @@ function reiniciarJogo() {
     MbarraDireita = m3.translation(CAMPO_X, tyBD);
 
     resetarBola(Math.random() < 0.5 ? 1 : -1);
+
+    painelFimDeJogo.style.display = "none";
+    jogoAtivo = true;
 }
 
-btnReiniciar.addEventListener("click", reiniciarJogo);
+btnJogarNovamente.addEventListener("click", jogarNovamente);
 
 function moverBola() {
 
@@ -499,7 +495,7 @@ function moverBola() {
     // Movimento horizontal
     txBola += txBola_offset;
 
-    // Bola indo pra direita: checa a barra direita (jogador)
+    // Bola indo pra direita: checa a barra direita 
     if (txBola_offset > 0 && txBola + BOLA_RAIO >= FRENTE_BARRA_DIREITA) {
 
         const dentroDaBarra =
@@ -511,15 +507,14 @@ function moverBola() {
             txBola = FRENTE_BARRA_DIREITA - BOLA_RAIO;
             txBola_offset = -txBola_offset;
         } else {
-            // Passou reto: ponto pro lado esquerdo
-            pontosEsquerda++;
-            atualizarPlacar();
-            resetarBola(1); // serve de volta pro lado direito
+            // Passou reto e bateu na parede de trás: fim de jogo
+            MbolaCentro = m3.translation(txBola, tyBola);
+            finalizarJogo("Jogador da esquerda venceu!");
             return;
         }
     }
 
-    // Bola indo pra esquerda: checa a barra esquerda
+    // Bola indo pra esquerda: checa a barra esquerda 
     if (txBola_offset < 0 && txBola - BOLA_RAIO <= FRENTE_BARRA_ESQUERDA) {
 
         const dentroDaBarra =
@@ -530,10 +525,9 @@ function moverBola() {
             txBola = FRENTE_BARRA_ESQUERDA + BOLA_RAIO;
             txBola_offset = -txBola_offset;
         } else {
-            // Passou reto: ponto pro lado direito
-            pontosDireita++;
-            atualizarPlacar();
-            resetarBola(-1); // serve de volta pro lado esquerdo
+            // Passou reto e bateu na parede de trás: fim de jogo
+            MbolaCentro = m3.translation(txBola, tyBola);
+            finalizarJogo("Jogador da direita venceu!");
             return;
         }
     }
@@ -542,6 +536,11 @@ function moverBola() {
 }
 
 function atualizaAnimacao(){
+
+    if (!jogoAtivo) {
+        return; // jogo parado, esperando o clique em "Jogar Novamente"
+    }
+
     moverBarraEsquerda();
     moverBarraDireita();
     moverBola();
@@ -552,5 +551,4 @@ function atualizaAnimacao(){
 // INÍCIO DO DESENHO
 // --------------------------------------------------
 
-atualizarPlacar();
 drawScene();

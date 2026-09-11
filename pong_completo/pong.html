@@ -12,24 +12,6 @@
         h1 {
             font-size: 20px;
         }
-        #placar {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        #btnReiniciar {
-            font-size: 14px;
-            font-weight: normal;
-            padding: 4px 12px;
-            cursor: pointer;
-            vertical-align: middle;
-        }
-        #placarEsquerda {
-            color: #2e9e2e;
-        }
-        #placarDireita {
-            color: #2e5ee6;
-        }
         canvas {
             border: 1px solid #999;
             background-color: black;
@@ -40,6 +22,24 @@
             font-size: 14px;
             color: #333;
         }
+        #painelFimDeJogo {
+            display: none;
+            margin-top: 14px;
+            padding: 16px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            max-width: 300px;
+        }
+        #mensagemFim {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0 0 12px 0;
+        }
+        #btnJogarNovamente {
+            font-size: 16px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -47,15 +47,12 @@
 
     <h1>Pong</h1>
 
-    <div id="placar">
-        <span id="placarEsquerda">Esquerda: 0</span>
-        &nbsp;|&nbsp;
-        <span id="placarDireita">Direita: 0</span>
-        &nbsp;&nbsp;
-        <button id="btnReiniciar">Reiniciar Jogo</button>
-    </div>
-
     <canvas id="canvas" width="600" height="600"></canvas>
+
+    <div id="painelFimDeJogo">
+        <p id="mensagemFim"></p>
+        <button id="btnJogarNovamente">Jogar Novamente</button>
+    </div>
 
     <p id="instrucoes">
         Jogador da esquerda (verde): teclas <strong>W</strong> (sobe) /
