@@ -23,7 +23,7 @@ class Helicopter {
         this.y = 0.0;
 
         // Velocidade de deslocamento (unidades por frame)
-        this.moveSpeed = 0.02;
+        this.moveSpeed = 0.01;
 
         // Limites simples para não deixar o helicóptero sair da tela
         this.limitX = 0.9;
@@ -34,8 +34,11 @@ class Helicopter {
         this.tailPropellerTheta = 0.0;
 
         // Velocidade de rotação de cada hélice (radianos/frame)
-        this.topPropellerSpeed = 0.35;
-        this.tailPropellerSpeed = 0.6;
+        this.topPropellerSpeed = 0.05;
+        this.tailPropellerSpeed = 0.05;
+
+        // Centro (pivô) da hélice de cauda em coordenadas locais
+        this.tailPropellerPivot = { x: 0.70, y: 0.0, z: 0.06 };
     }
 
     // Lê o teclado e atualiza a posição
@@ -79,8 +82,6 @@ class Helicopter {
         this.tail.update(translation);
 
         // Hélice superior: gira em torno do eixo Y (rotor principal,
-        // varre o plano horizontal) e é então deslocada para a
-        // posição atual do helicóptero
         this.topPropellers.update(
             m4.translate(
                 m4.yRotation(this.topPropellerTheta),
@@ -88,14 +89,28 @@ class Helicopter {
             )
         );
 
-        // Hélice de cauda: gira em torno do eixo X (rotor de cauda,
-        // varre o plano vertical lateral) e também acompanha a posição
-        this.tailPropeller.update(
-            m4.translate(
-                m4.xRotation(this.tailPropellerTheta),
-                this.x, this.y, 0
-            )
+        // Hélice de cauda: o eixo de rotação é o Z. 
+        const pivot = this.tailPropellerPivot;
+
+        let tailPropellerTransform =
+            m4.translation(-pivot.x, -pivot.y, -pivot.z);
+
+        tailPropellerTransform = m4.zRotate(
+            tailPropellerTransform,
+            this.tailPropellerTheta
         );
+
+        tailPropellerTransform = m4.translate(
+            tailPropellerTransform,
+            pivot.x, pivot.y, pivot.z
+        );
+
+        tailPropellerTransform = m4.translate(
+            tailPropellerTransform,
+            this.x, this.y, 0
+        );
+
+        this.tailPropeller.update(tailPropellerTransform);
     }
 
     draw(renderer) {

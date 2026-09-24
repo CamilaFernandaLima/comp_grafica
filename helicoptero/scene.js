@@ -9,27 +9,12 @@ class Scene {
         this.renderer =
             new Renderer(gl, program);
 
-        // Figura que será exibida
-        this.helicopterBody = new HelicopterBody();
-
-        this.helicopterTopShaft = new HelicopterTopShaft();
-
-        this.helicopterTail = new HelicopterTail();
-
-        this.helicopterPropellers = new HelicopterPropellers();
-
-        this.helicopterTailPropeller = new HelicopterTailPropeller();
-
-        this.theta = 0.0;
+        // O helicóptero (corpo + hélices) e seu comportamento
+        this.helicopter = new Helicopter();
     }
 
     update() {
-        this.theta += 0.01;
-        this.helicopterBody.update(m4.xRotation(this.theta));
-        this.helicopterTopShaft.update(m4.xRotation(this.theta));
-        this.helicopterTail.update(m4.xRotation(this.theta));
-        this.helicopterPropellers.update(m4.xRotation(this.theta));
-        this.helicopterTailPropeller.update(m4.xRotation(this.theta));
+        this.helicopter.update(Keyboard);
     }
 
     draw() {
@@ -41,23 +26,7 @@ class Scene {
 
         gl.useProgram(program);
 
-        this.helicopterBody.draw(
-            this.renderer
-        );
-
-        this.helicopterTopShaft.draw(
-            this.renderer
-        );
-
-        this.helicopterTail.draw(
-            this.renderer
-        );
-
-        this.helicopterPropellers.draw(
-            this.renderer
-        );
-
-        this.helicopterTailPropeller.draw(
+        this.helicopter.draw(
             this.renderer
         );
     }
